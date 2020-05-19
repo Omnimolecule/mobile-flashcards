@@ -1,26 +1,29 @@
+import 'react-native-gesture-handler';
 import * as React from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
 import { createStore } from "redux";
 import reducer from './reducers';
 import { Provider } from "react-redux";
 import middleware from './middleware';
+import { NavigationContainer } from '@react-navigation/native';
 import Home from './components/Home';
+import DeckDetail from './components/DeckDetail';
+import { createStackNavigator } from '@react-navigation/stack';
 
-const instructions = Platform.select({
-  ios: `Press Cmd+R to reload,\nCmd+D or shake for dev menu`,
-  android: `Double tap R on your keyboard to reload,\nShake or press menu button for dev menu`,
-});
+
+const Stack = createStackNavigator();
 
 class App extends React.Component {
-
-  componentDidMount() {
-    const {dispatch} = this.props;
-  }
 
   render() {
     return (
       <Provider store={createStore(reducer, middleware)}>
-        <Home />
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="Home">
+            <Stack.Screen name="Home" component={Home} options={{ title: 'Mobile Flashcards' }} />
+            <Stack.Screen name="DeckDetail" component={DeckDetail} options={{ title: 'Deck Overview' }}/>
+          </Stack.Navigator>
+        </NavigationContainer>
       </Provider>
     );
   }

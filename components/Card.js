@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableNativeFeedback } from 'react-native';
 import { connect } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
 
 class Card extends Component {
 
     render() {
-        const { deck, deckId } = this.props;
+        const { deck, deckId, navigateToDetail } = this.props;
         const { title, cards } = deck;
         return (
-            <TouchableNativeFeedback onPress={() => console.log('pressed')}>
+            <TouchableNativeFeedback onPress={() => (navigateToDetail(deckId))}>
                 <View style={styles.card}>
                     <Text style={styles.title}>{title}</Text>
                     <Text style={styles.detail}>({cards.length} cards)</Text>
@@ -47,11 +48,12 @@ const styles = StyleSheet.create({
     }
 })
 
-function mapStateToProps(decks, { deckId }) {
+function mapStateToProps(decks, { deckId, navigateToDetail }) {
     const deck = decks[deckId];
     return {
         deck,
-        deckId
+        deckId,
+        navigateToDetail
     }
 }
 

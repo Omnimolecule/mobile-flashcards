@@ -13,6 +13,11 @@ class Home extends Component {
         dispatch(handleRecieveDecks());
     }
 
+    navigateToDetail = (id) => {
+        const { navigation } = this.props;
+        navigation.navigate('DeckDetail', { id });
+    }
+
     render() {
         const { decks } = this.props;
 
@@ -31,7 +36,7 @@ class Home extends Component {
                 <FlatList
                     data={Object.keys(decks)}
                     renderItem={({ item }) => (
-                        <Card deckId={item} />
+                        <Card deckId={item} navigateToDetail={this.navigateToDetail} />
                     )}
                     keyExtractor={item => item}
                 />
@@ -63,9 +68,10 @@ const styles = StyleSheet.create({
     }
 })
 
-function mapStateToProps(decks) {
+function mapStateToProps(decks, props) {
     console.log(decks);
     return {
+        ...props,
         decks
     }
 }
