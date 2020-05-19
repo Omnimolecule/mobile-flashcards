@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
-import { handleRecieveDecks, handleRecieveDeck, handleAddDeck, handleAddCard } from '../actions';
+import { handleRecieveDecks } from '../actions';
+import Card from './Card';
 
 class Home extends Component {
 
@@ -12,14 +13,43 @@ class Home extends Component {
 
     render() {
         const { decks } = this.props;
+
+        if (!decks) {
+            return (
+                <View style={styles.container}>
+                    <Text>Loading</Text>
+                </View>
+            )
+        }
+
         return (
-            <View>
-                <Text> Home </Text>
-                {decks && Object.keys(decks).map((key) => <Text key={key}>{`${key}: ${decks[key].title} - ${decks[key].cards.length}`}</Text>)}
+            <View style={styles.container}>
+                <Text style={styles.title}>Choose a Deck to start learning</Text>
+
+                <FlatList
+                    data={Object.keys(decks)}
+                    renderItem={({ item }) => (
+                        <Card key={item} deckId={item} />
+                    )}
+                />
             </View>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#faf9f7',
+    },
+    title: {
+        fontSize: 30,
+        textAlign: 'center',
+        color: 'black',
+        fontWeight: 'bold',
+        marginTop: 16
+    }
+})
 
 function mapStateToProps(decks) {
     console.log(decks);
