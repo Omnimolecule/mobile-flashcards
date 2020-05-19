@@ -17,29 +17,34 @@ function checkDeckInitialization(result) {
 }
 
 export function getDeck(id) {
-    return getAllDecks().then((decks) => decks[id]);
+    return getAllDecks().then((decks) => (decks[id]));
 }
 
 export function saveDeck(title) {
     let id = generateUID();
+    let newDeck = {
+        title,
+        cards: []
+    };
     return AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify({
-        [id]: {
-            title,
-            cards: []
-        }
-    }))
+        [id]: newDeck
+    })).then(() => ({id, deck: newDeck}))
 }
 
 export function saveCard(deckId, question, answer) {
     return getDeck(deckId).then((deck) => {
-        debugger
-        AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify({
+        console.log(deck);
+        let newCard = {
+            question,
+            answer
+        }
+        return AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify({
             [deckId]: {
-                cards: [...deck.cards, {
-                    question,
-                    answer
-                }]
+                cards: [
+                    ...deck.cards, 
+                    newCard
+                ]
             }
-        }))
+        })).then(() => (newCard));
     })
 }
