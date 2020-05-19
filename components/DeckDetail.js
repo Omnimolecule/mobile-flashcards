@@ -10,6 +10,11 @@ class DeckDetail extends Component {
         navigation.push('AddCard', { id });
     }
 
+    navigateToQuiz = () => {
+        const { id, navigation } = this.props;
+        navigation.push('Quiz', { id });
+    }
+
     render() {
         const { deck } = this.props;
         return (
@@ -27,7 +32,7 @@ class DeckDetail extends Component {
                         style={styles.fab}
                         label='Start Game'
                         icon="gamepad-variant"
-                        onPress={() => console.log('Pressed')}
+                        onPress={this.navigateToQuiz}
                     />
                 </View>
             </View>

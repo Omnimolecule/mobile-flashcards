@@ -11,6 +11,7 @@ import DeckDetail from './components/DeckDetail';
 import { createStackNavigator } from '@react-navigation/stack';
 import AddDeck from './components/AddDeck';
 import AddCard from './components/AddCard';
+import Quiz from './components/Quiz';
 
 
 const Stack = createStackNavigator();
@@ -26,6 +27,7 @@ class App extends React.Component {
             <Stack.Screen name="DeckDetail" component={DeckDetail} options={{ title: 'Deck Overview' }}/>
             <Stack.Screen name="AddDeck" component={AddDeck} options={{title: 'Add new Deck'}} />
             <Stack.Screen name="AddCard" component={AddCard} options={{title: 'Add new Card'}} />
+            <Stack.Screen name="Quiz" component={Quiz} options={{title: 'Quiz'}} />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>
