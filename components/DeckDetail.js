@@ -5,15 +5,20 @@ import { FAB, Button } from 'react-native-paper';
 
 class DeckDetail extends Component {
 
+    navigateToAddCard = () => {
+        const { id, navigation } = this.props;
+        navigation.push('AddCard', { id });
+    }
+
     render() {
-        const { id, deck } = this.props;
+        const { deck } = this.props;
         return (
             <View style={styles.container}>
                 <View style={styles.card}>
                     <View>
                         <Text style={styles.title}>{deck.title}</Text>
                         <Text style={styles.detail}>Contains {deck.cards.length} cards</Text>
-                        <Button style={styles.button} color='#3236a8' mode="outlined" onPress={() => console.log('Pressed')}>
+                        <Button style={styles.button} color='#3236a8' mode="outlined" onPress={this.navigateToAddCard}>
                             Add Card
                         </Button>
                     </View>
