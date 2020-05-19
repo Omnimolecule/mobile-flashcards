@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { handleRecieveDecks } from '../actions';
 import Deck from './Deck';
-import FAB from 'react-native-fab';
+import { FAB } from 'react-native-paper';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 class Home extends Component {
@@ -14,8 +14,8 @@ class Home extends Component {
     }
 
     navigateToDetail = (id) => {
-        const {navigation} = this.props;
-        navigation.navigate('DeckDetail', {id});
+        const { navigation } = this.props;
+        navigation.navigate('DeckDetail', { id });
     }
 
     render() {
@@ -40,15 +40,13 @@ class Home extends Component {
                     )}
                     keyExtractor={item => item}
                 />
+                
                 <FAB
-                    buttonColor="#3236a8"
-                    iconTextColor="#FFFFFF"
-                    onClickAction={() => { console.log("FAB pressed") }}
-                    visible={true}
-                    iconTextComponent={
-                        <MaterialCommunityIcons name="plus" size={24} color="white" />
-                    }
+                    style={styles.fab}
+                    icon="plus"
+                    onPress={() => console.log('Pressed')}
                 />
+
             </View>
         );
     }
@@ -65,6 +63,13 @@ const styles = StyleSheet.create({
         color: 'black',
         fontWeight: 'bold',
         marginTop: 16
+    },
+    fab: {
+        backgroundColor: '#3236a8',
+        position: 'absolute',
+        margin: 16,
+        right: 0,
+        bottom: 0,
     }
 })
 
