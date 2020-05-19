@@ -18,8 +18,13 @@ class Home extends Component {
         navigation.navigate('DeckDetail', { id });
     }
 
+    navigateToAddDeck = () => {
+        const { navigation } = this.props;
+        navigation.push('AddDeck');
+    }
+
     render() {
-        const { decks } = this.props;
+        const { decks, navigation } = this.props;
 
         if (!decks) {
             return (
@@ -44,7 +49,7 @@ class Home extends Component {
                 <FAB
                     style={styles.fab}
                     icon="plus"
-                    onPress={() => console.log('Pressed')}
+                    onPress={this.navigateToAddDeck}
                 />
 
             </View>

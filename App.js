@@ -9,6 +9,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import Home from './components/Home';
 import DeckDetail from './components/DeckDetail';
 import { createStackNavigator } from '@react-navigation/stack';
+import AddDeck from './components/AddDeck';
 
 
 const Stack = createStackNavigator();
@@ -22,6 +23,7 @@ class App extends React.Component {
           <Stack.Navigator initialRouteName="Home">
             <Stack.Screen name="Home" component={Home} options={{ title: 'Mobile Flashcards' }} />
             <Stack.Screen name="DeckDetail" component={DeckDetail} options={{ title: 'Deck Overview' }}/>
+            <Stack.Screen name="AddDeck" component={AddDeck} options={{title: 'Add new Deck'}} />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>
