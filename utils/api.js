@@ -13,7 +13,7 @@ function checkDeckInitialization(result) {
         AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(initialData));
         return initialData;
     }
-    return result;
+    return JSON.parse(result);
 }
 
 export function getDeck(id) {
@@ -24,18 +24,22 @@ export function saveDeck(title) {
     let id = generateUID();
     return AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify({
         [id]: {
-            title
+            title,
+            cards: []
         }
     }))
 }
 
 export function saveCard(deckId, question, answer) {
-    return getDeck(deckId).then((deck) => AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify({
-        [deckId]: {
-            cards: [...deck.cards, {
-                question,
-                answer
-            }]
-        }
-    })))    
+    return getDeck(deckId).then((deck) => {
+        debugger
+        AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify({
+            [deckId]: {
+                cards: [...deck.cards, {
+                    question,
+                    answer
+                }]
+            }
+        }))
+    })
 }
