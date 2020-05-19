@@ -3,6 +3,8 @@ import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { handleRecieveDecks } from '../actions';
 import Card from './Card';
+import FAB from 'react-native-fab';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 class Home extends Component {
 
@@ -29,8 +31,18 @@ class Home extends Component {
                 <FlatList
                     data={Object.keys(decks)}
                     renderItem={({ item }) => (
-                        <Card key={item} deckId={item} />
+                        <Card deckId={item} />
                     )}
+                    keyExtractor={item => item}
+                />
+                <FAB
+                    buttonColor="#3236a8"
+                    iconTextColor="#FFFFFF"
+                    onClickAction={() => { console.log("FAB pressed") }}
+                    visible={true}
+                    iconTextComponent={
+                        <MaterialCommunityIcons name="plus" size={24} color="white" />
+                    }
                 />
             </View>
         );
