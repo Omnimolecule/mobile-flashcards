@@ -7,7 +7,7 @@ let decks = {
                 answer: "la tomate"
             },
             {
-                qestion: "Salad",
+                question: "Salad",
                 answer: "la salade"
             },
             {
