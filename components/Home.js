@@ -28,7 +28,9 @@ class Home extends Component {
         if (!decks) {
             return (
                 <View style={styles.container}>
-                    <Text>Loading</Text>
+                    <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
+                        <ActivityIndicator size='large' animating={true} color='#3236a8' />
+                    </View>
                 </View>
             )
         }

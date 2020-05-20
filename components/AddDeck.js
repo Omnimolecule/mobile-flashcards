@@ -4,26 +4,49 @@ import { TextInput, Button } from 'react-native-paper';
 import { connect } from 'react-redux';
 import { handleAddDeck } from '../actions/shared';
 import { StackActions } from '@react-navigation/native';
+import { ActivityIndicator } from 'react-native-paper';
+import { removeNewDeckId } from '../actions/newDeckId';
 
 class AddDeck extends Component {
     state = {
         title: '',
+        goToDetail: false
     }
 
     addDeck = () => {
-        const { dispatch, navigation } = this.props;
+        const { dispatch } = this.props;
         dispatch(handleAddDeck(this.state.title));
-        navigation.goBack();
-        /*
-        navigation.dispatch(
-            StackActions.replace('DeckDetail', {
-              id: 'xyz',
-            })
-          );
-          */
+
+        this.setState(() => ({
+            goToDetail: true
+        }))
+    }
+
+    goToDetail = () => {
+        const { newDeckId, navigation, dispatch } = this.props;
+        if (newDeckId) {
+            navigation.dispatch(
+                StackActions.replace('DeckDetail', {
+                    id: newDeckId,
+                })
+            );
+
+            dispatch(removeNewDeckId());
+        }
     }
 
     render() {
+        if (this.state.goToDetail) {
+            this.goToDetail();
+            return (
+                <View style={styles.container}>
+                    <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
+                        <ActivityIndicator size='large' animating={true} color='#3236a8' />
+                    </View>
+                </View>
+            )
+        }
+
         return (
             <View style={styles.container}>
                 <View style={styles.card}>
@@ -67,4 +90,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default connect()(AddDeck);
+export default connect((state) => ({ newDeckId: state.newDeckId }))(AddDeck);
