@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { Button } from 'react-native-paper';
 import { Result } from './Result';
+import { clearLocalNotification } from '../utils/notification';
 
 class Quiz extends Component {
     state = {
@@ -69,12 +70,17 @@ class Quiz extends Component {
         );
     }
 
+    logQuizDone = () => {
+        clearLocalNotification();
+    }
+
     render() {
         const { deck } = this.props;
         const { index, correctCount, wrongCount, showQuestion } = this.state;
         const card = deck.cards[index];
 
         if (index === deck.cards.length) {
+            this.logQuizDone();
             return (
                 <Result
                     title={deck.title}

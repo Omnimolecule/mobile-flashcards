@@ -12,11 +12,16 @@ import { createStackNavigator } from '@react-navigation/stack';
 import AddDeck from './components/AddDeck';
 import AddCard from './components/AddCard';
 import Quiz from './components/Quiz';
+import { setLocalNotification } from './utils/notification';
 
 
 const Stack = createStackNavigator();
 
 class App extends React.Component {
+
+  componentDidMount() {
+    setLocalNotification();
+  }
 
   render() {
     return (
