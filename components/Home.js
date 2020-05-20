@@ -23,7 +23,7 @@ class Home extends Component {
     }
 
     render() {
-        const { decks, navigation } = this.props;
+        const { decks } = this.props;
 
         if (!decks) {
             return (

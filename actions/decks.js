@@ -37,7 +37,7 @@ function addCard(deckId, card) {
 }
 
 export function handleAddCard(deckId, question, answer) {
-    return ((dispatch) =>{
+    return ((dispatch) => {
         saveCard(deckId, question, answer).then((card) => {
             dispatch(addCard(deckId, card));
         })

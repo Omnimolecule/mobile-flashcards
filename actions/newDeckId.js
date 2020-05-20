@@ -8,7 +8,7 @@ export function receiveNewDeckId(id) {
     }
 }
 
-export function removeNewDeckId(){
+export function removeNewDeckId() {
     return {
         type: REMOVE_NEW_DECK_ID
     }

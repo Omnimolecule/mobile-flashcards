@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { TextInput, Button } from 'react-native-paper';
 import { handleAddCard } from '../actions/decks';
 
@@ -11,9 +11,9 @@ class AddCard extends Component {
     }
 
     addCard = () => {
-        const {dispatch, navigation, route} = this.props;
-        const {id} = route.params;
-        const {question, answer} = this.state;
+        const { dispatch, navigation, route } = this.props;
+        const { id } = route.params;
+        const { question, answer } = this.state;
         dispatch(handleAddCard(id, question, answer));
         navigation.goBack();
     }
@@ -35,7 +35,7 @@ class AddCard extends Component {
                         mode='outlined'
                     />
                     <Button style={styles.button} color='#3236a8' mode="contained" onPress={this.addCard}>
-                            Add Card
+                        Add Card
                     </Button>
                 </View>
             </View>

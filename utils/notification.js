@@ -18,29 +18,28 @@ export function setLocalNotification() {
                 Permissions.getAsync(Permissions.NOTIFICATIONS)
                     .then(({ status }) => {
                         if (status === 'granted') {
-                            console.log('Lets do it!');
-                            Notifications.cancelAllScheduledNotificationsAsync()
+                            Notifications.cancelAllScheduledNotificationsAsync();
 
                             Notifications.setNotificationHandler({
                                 handleNotification: async () => ({
-                                  shouldShowAlert: true,
-                                  shouldPlaySound: true,
-                                  shouldSetBadge: false,
+                                    shouldShowAlert: true,
+                                    shouldPlaySound: true,
+                                    shouldSetBadge: false,
                                 })
-                              });
+                            });
 
                             Notifications.scheduleNotificationAsync({
                                 content: {
-                                  title: "Time to learn",
-                                  body: "👋 don't forget to flip some cards today!",
+                                    title: "Time to learn",
+                                    body: "👋 don't forget to flip some cards today!",
                                 },
                                 trigger: {
-                                  seconds: 60 * 60 * 24, //remind in 24 hours from now
-                                  repeats: true
+                                    seconds: 60 * 60 * 24, //remind in 24 hours from now
+                                    repeats: true
                                 },
-                              });
+                            });
 
-                            AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true))
+                            AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true));
                         }
                     })
             }

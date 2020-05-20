@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     },
 })
 
-function mapStateToProps({decks}, { route, navigation }) {
+function mapStateToProps({ decks }, { route, navigation }) {
     const id = route.params.id;
     const deck = decks[id];
     return {

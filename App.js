@@ -29,10 +29,10 @@ class App extends React.Component {
         <NavigationContainer>
           <Stack.Navigator initialRouteName="Home">
             <Stack.Screen name="Home" component={Home} options={{ title: 'Mobile Flashcards' }} />
-            <Stack.Screen name="DeckDetail" component={DeckDetail} options={{ title: 'Deck Overview' }}/>
-            <Stack.Screen name="AddDeck" component={AddDeck} options={{title: 'Add new Deck'}} />
-            <Stack.Screen name="AddCard" component={AddCard} options={{title: 'Add new Card'}} />
-            <Stack.Screen name="Quiz" component={Quiz} options={{title: 'Quiz'}} />
+            <Stack.Screen name="DeckDetail" component={DeckDetail} options={{ title: 'Deck Overview' }} />
+            <Stack.Screen name="AddDeck" component={AddDeck} options={{ title: 'Add new Deck' }} />
+            <Stack.Screen name="AddCard" component={AddCard} options={{ title: 'Add new Card' }} />
+            <Stack.Screen name="Quiz" component={Quiz} options={{ title: 'Quiz' }} />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>

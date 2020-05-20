@@ -13,7 +13,7 @@ export default function decks(state = {}, action) {
                 ...state,
                 [action.id]: action.deck
             }
-        case ADD_CARD_TO_DECK: 
+        case ADD_CARD_TO_DECK:
             let card = action.card;
             return {
                 ...state,

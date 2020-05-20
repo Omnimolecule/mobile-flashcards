@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     }
 })
 
-function mapStateToProps({decks}, { deckId, navigateToDetail }) {
+function mapStateToProps({ decks }, { deckId, navigateToDetail }) {
     const deck = decks[deckId];
     return {
         deck,

@@ -15,7 +15,8 @@ class AddDeck extends Component {
 
     addDeck = () => {
         const { dispatch } = this.props;
-        dispatch(handleAddDeck(this.state.title));
+        const { title } = this.state;
+        dispatch(handleAddDeck(title));
 
         this.setState(() => ({
             goToDetail: true
@@ -36,7 +37,8 @@ class AddDeck extends Component {
     }
 
     render() {
-        if (this.state.goToDetail) {
+        const { goToDetail, title } = this.state;
+        if (goToDetail) {
             this.goToDetail();
             return (
                 <View style={styles.container}>
@@ -52,7 +54,7 @@ class AddDeck extends Component {
                 <View style={styles.card}>
                     <TextInput
                         label='Deck title'
-                        value={this.state.title}
+                        value={title}
                         onChangeText={title => this.setState({ title })}
                         mode='outlined'
                     />

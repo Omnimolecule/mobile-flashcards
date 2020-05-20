@@ -28,7 +28,7 @@ export function saveDeck(title) {
     };
     return AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify({
         [id]: newDeck
-    })).then(() => ({id, deck: newDeck}))
+    })).then(() => ({ id, deck: newDeck }))
 }
 
 export function saveCard(deckId, question, answer) {
@@ -41,7 +41,7 @@ export function saveCard(deckId, question, answer) {
         return AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify({
             [deckId]: {
                 cards: [
-                    ...deck.cards, 
+                    ...deck.cards,
                     newCard
                 ]
             }
