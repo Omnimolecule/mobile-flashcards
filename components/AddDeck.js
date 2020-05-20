@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { handleAddDeck } from '../actions';
+import { StackActions } from '@react-navigation/native';
 
 class AddDeck extends Component {
     state = {
@@ -10,9 +11,16 @@ class AddDeck extends Component {
     }
 
     addDeck = () => {
-        const {dispatch, navigation} = this.props;
+        const { dispatch, navigation } = this.props;
         dispatch(handleAddDeck(this.state.title));
         navigation.goBack();
+        /*
+        navigation.dispatch(
+            StackActions.replace('DeckDetail', {
+              id: 'xyz',
+            })
+          );
+          */
     }
 
     render() {
@@ -26,7 +34,7 @@ class AddDeck extends Component {
                         mode='outlined'
                     />
                     <Button style={styles.button} color='#3236a8' mode="contained" onPress={this.addDeck}>
-                            Add Deck
+                        Add Deck
                     </Button>
                 </View>
             </View>
