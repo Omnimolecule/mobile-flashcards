@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import {connect} from 'react-redux';
 import { TextInput, Button } from 'react-native-paper';
-import { handleAddCard } from '../actions';
+import { handleAddCard } from '../actions/decks';
 
 class AddCard extends Component {
     state = {

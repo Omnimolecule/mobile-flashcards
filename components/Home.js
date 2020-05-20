@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
-import { handleRecieveDecks } from '../actions';
 import Deck from './Deck';
 import { FAB } from 'react-native-paper';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { handleRecieveDecks } from '../actions/decks';
 
 class Home extends Component {
 
@@ -45,7 +44,7 @@ class Home extends Component {
                     )}
                     keyExtractor={item => item}
                 />
-                
+
                 <FAB
                     style={styles.fab}
                     icon="plus"
@@ -78,8 +77,7 @@ const styles = StyleSheet.create({
     }
 })
 
-function mapStateToProps(decks, props) {
-    console.log(decks);
+function mapStateToProps({ decks }, props) {
     return {
         ...props,
         decks

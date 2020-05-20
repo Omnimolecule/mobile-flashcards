@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
     }
 })
 
-function mapStatesToProps(decks, { navigation, route }) {
+function mapStatesToProps({decks}, { navigation, route }) {
     const { id } = route.params;
     const deck = decks[id];
     return {

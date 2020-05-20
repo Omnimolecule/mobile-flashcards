@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { FAB, Button } from 'react-native-paper';
 
 class DeckDetail extends Component {
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     },
 })
 
-function mapStateToProps(decks, { route, navigation }) {
+function mapStateToProps({decks}, { route, navigation }) {
     const id = route.params.id;
     const deck = decks[id];
     return {
