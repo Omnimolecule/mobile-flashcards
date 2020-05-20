@@ -32,6 +32,15 @@ class Quiz extends Component {
         }));
     }
 
+    restart = () => {
+        this.setState(() => ({
+            index: 0,
+            showQuestion: true,
+            correctCount: 0,
+            wrongCount: 0
+        }));
+    }
+
     showQuestions = (card) => {
         return (
             <View>
@@ -62,15 +71,17 @@ class Quiz extends Component {
 
     render() {
         const { deck } = this.props;
-        const card = deck.cards[this.state.index];
+        const { index, correctCount, wrongCount, showQuestion } = this.state;
+        const card = deck.cards[index];
 
-        if (this.state.index === deck.cards.length){
+        if (index === deck.cards.length) {
             return (
-                <Result 
+                <Result
                     title={deck.title}
-                    max={deck.cards.length} 
-                    correct={this.state.correctCount} 
-                    wrong={this.state.wrongCount} 
+                    max={deck.cards.length}
+                    correct={correctCount}
+                    wrong={wrongCount}
+                    restart={this.restart}
                 />
             );
         }
@@ -79,7 +90,8 @@ class Quiz extends Component {
             <View style={styles.container}>
                 <View style={styles.card}>
                     <Text style={{ textAlign: 'center' }}>Topic: {deck.title}</Text>
-                    {this.state.showQuestion
+                    <Text style={{ textAlign: 'center' }}>{index + 1}/{deck.cards.length}</Text>
+                    {showQuestion
                         ? this.showQuestions(card)
                         : this.showAnswer(card)
                     }

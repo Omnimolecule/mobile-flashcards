@@ -1,17 +1,34 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { Button } from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
 
 export function Result(props) {
-    const {max, title, correct, wrong} = props;
+    const { max, title, correct, wrong, restart } = props;
     const result = (correct / max * 100).toFixed();
+    const navigation = useNavigation();
+
     return (
         <View style={styles.container}>
             <View style={styles.card}>
-                <Text style={{textAlign: 'center'}}>{title}</Text>
-                <Text style={[styles.detail, {marginTop: 20}]}>Success rate</Text>
+                <Text style={{ textAlign: 'center' }}>{title}</Text>
+                <Text style={[styles.detail, { marginTop: 20 }]}>Success rate</Text>
                 <Text style={styles.result}>{result}%</Text>
                 <Text style={styles.detail}>Correct: {correct}</Text>
                 <Text style={styles.detail}>Incorrect: {wrong}</Text>
+
+                <View style={{ marginTop: 50 }}>
+                    <Button
+                        style={styles.button}
+                        color='#3236a8'
+                        mode="contained"
+                        onPress={restart}>Restart</Button>
+                    <Button
+                        style={styles.button}
+                        color='#3236a8'
+                        mode="contained"
+                        onPress={navigation.goBack}>Back to Deck</Button>
+                </View>
             </View>
         </View>
     );
@@ -52,5 +69,10 @@ const styles = StyleSheet.create({
         color: '#3236a8',
         fontWeight: 'bold',
         marginBottom: 30
-    }
+    },
+    button: {
+        margin: 5,
+        marginLeft: 15,
+        marginRight: 15,
+    },
 })

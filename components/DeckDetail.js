@@ -28,12 +28,12 @@ class DeckDetail extends Component {
                         </Button>
                     </View>
 
-                    <FAB
+                    {deck.cards.length > 0 && <FAB
                         style={styles.fab}
                         label='Start Game'
                         icon="gamepad-variant"
                         onPress={this.navigateToQuiz}
-                    />
+                    />}
                 </View>
             </View>
         );
