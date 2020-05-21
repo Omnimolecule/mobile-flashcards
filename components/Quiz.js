@@ -22,14 +22,16 @@ class Quiz extends Component {
     logCorrect = () => {
         this.setState((prevState) => ({
             correctCount: prevState.correctCount + 1,
-            index: prevState.index + 1
+            index: prevState.index + 1,
+            showQuestion: true
         }));
     }
 
     logWrong = () => {
         this.setState((prevState) => ({
             wrongCount: prevState.wrongCount + 1,
-            index: prevState.index + 1
+            index: prevState.index + 1,
+            showQuestion: true
         }));
     }
 
