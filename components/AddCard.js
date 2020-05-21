@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import { TextInput, Button } from 'react-native-paper';
 import { handleAddCard } from '../actions/decks';
@@ -14,8 +14,23 @@ class AddCard extends Component {
         const { dispatch, navigation, route } = this.props;
         const { id } = route.params;
         const { question, answer } = this.state;
-        dispatch(handleAddCard(id, question, answer));
-        navigation.goBack();
+
+        if (question && answer) {
+            dispatch(handleAddCard(id, question, answer));
+            navigation.goBack();
+        } else {
+            Alert.alert(
+                "Please enter a question and an answer",
+                "Question and Answer can't be empty",
+                [
+                    {
+                        text: "Ok",
+                        style: "cancel"
+                    },
+                ],
+                { cancelable: true }
+            );
+        }
     }
 
     render() {
