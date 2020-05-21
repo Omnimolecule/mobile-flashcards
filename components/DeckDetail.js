@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Alert } from 'react-native';
 import { FAB, Button } from 'react-native-paper';
 
 class DeckDetail extends Component {
@@ -11,8 +11,23 @@ class DeckDetail extends Component {
     }
 
     navigateToQuiz = () => {
-        const { id, navigation } = this.props;
-        navigation.push('Quiz', { id });
+        const { deck, id, navigation } = this.props;
+        if (deck.cards.length > 0) {
+            navigation.push('Quiz', { id });
+        } else {
+            Alert.alert(
+                "Unable to start quiz",
+                "You need to add at least one card to your deck to start a quiz.",
+                [
+                    {
+                        text: "Cancel",
+                        style: "cancel"
+                    },
+                    { text: "Add Card", onPress: this.navigateToAddCard }
+                ],
+                { cancelable: true }
+            );
+        }
     }
 
     render() {
@@ -28,12 +43,12 @@ class DeckDetail extends Component {
                         </Button>
                     </View>
 
-                    {deck.cards.length > 0 && <FAB
+                    <FAB
                         style={styles.fab}
                         label='Start Game'
                         icon="gamepad-variant"
                         onPress={this.navigateToQuiz}
-                    />}
+                    />
                 </View>
             </View>
         );
