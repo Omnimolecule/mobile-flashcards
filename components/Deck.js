@@ -2,20 +2,17 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableNativeFeedback } from 'react-native';
 import { connect } from 'react-redux';
 
-class Deck extends Component {
-
-    render() {
-        const { deck, deckId, navigateToDetail } = this.props;
-        const { title, cards } = deck;
-        return (
-            <TouchableNativeFeedback onPress={() => (navigateToDetail(deckId))}>
-                <View style={styles.card}>
-                    <Text style={styles.title}>{title}</Text>
-                    <Text style={styles.detail}>({cards.length} cards)</Text>
-                </View>
-            </TouchableNativeFeedback>
-        );
-    }
+function Deck(props) {
+    const { deck, deckId, navigateToDetail } = props;
+    const { title, cards } = deck;
+    return (
+        <TouchableNativeFeedback onPress={() => (navigateToDetail(deckId))}>
+            <View style={styles.card}>
+                <Text style={styles.title}>{title}</Text>
+                <Text style={styles.detail}>({cards.length} cards)</Text>
+            </View>
+        </TouchableNativeFeedback>
+    );
 }
 
 const styles = StyleSheet.create({
