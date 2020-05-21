@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Alert } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
 import { connect } from 'react-redux';
 import { handleAddDeck } from '../actions/shared';
@@ -16,11 +16,26 @@ class AddDeck extends Component {
     addDeck = () => {
         const { dispatch } = this.props;
         const { title } = this.state;
-        dispatch(handleAddDeck(title));
+        if (title) {
+            dispatch(handleAddDeck(title));
 
-        this.setState(() => ({
-            goToDetail: true
-        }))
+            this.setState(() => ({
+                goToDetail: true
+            }))
+        } else {
+            Alert.alert(
+                "Please enter a title",
+                "The title can't be empty",
+                [
+                    {
+                        text: "Ok",
+                        style: "cancel"
+                    },
+                ],
+                { cancelable: true }
+            );
+        }
+        
     }
 
     goToDetail = () => {
