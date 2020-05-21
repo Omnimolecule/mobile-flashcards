@@ -1,6 +1,6 @@
 
 import { _getInitialData, DECKS_STORAGE_KEY, generateUID } from "./_DATA";
-import AsyncStorage from '@react-native-community/async-storage'
+import { AsyncStorage } from 'react-native';
 
 export function getAllDecks() {
     return AsyncStorage.getItem(DECKS_STORAGE_KEY)
